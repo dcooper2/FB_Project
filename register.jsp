@@ -2,6 +2,9 @@
 <jsp:include page="menu.jsp" />
 
 <HTML>
+<HEAD>
+	<Title>Facebook-Register</Title>
+</HEAD>
         <BODY>
 
                 <h1>Register</h1>

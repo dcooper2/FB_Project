@@ -8,12 +8,12 @@
         <BODY>
 
         <%
-                String username = request.getParameter("username");
+                String username = request.getParameter("email");
                 String password = request.getParameter("password");
 		String tempEmail = " ";
                 User theUser = new User(username, password, tempEmail);
                 theUser =
-                UserRepository.instance().getUser(username);
+                UserRepository.instance().getUser(email);
 
                 Collection<User> theUsers =
                         UserRepository.instance().getAllUsers();
@@ -22,9 +22,9 @@
                 boolean isU = false;
                 while(theUsersIter.hasNext()){
                         User currU = theUsersIter.next();
-			String tempU = currU.getUsername();
+			String tempU = currU.getEmail();
                         String tempP = currU.getPassword();
-                        if((tempU.equals(username)) && (tempP.equals(password)))                        {
+                        if((tempU.equals(email)) && (tempP.equals(password)))                        {
                                 session.setAttribute("LoginUser" , theUser);
         %>
                                 <jsp:forward page="home.jsp" />                  
@@ -34,7 +34,7 @@
 
                 }
                 if(isU == false){
-                        out.println("Wrong username or password!!");
+                        out.println("Wrong email or password!!");
                 }
 
         %>

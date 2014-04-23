@@ -5,55 +5,23 @@
 <%@ page import="java.util.ArrayList" %>
 
 <HTML>
-        <BODY>
-        <%
-        String username =request.getParameter("username");
-        String password = request.getParameter("password");
-        String repassword = request.getParameter("repassword");
-	String email = request.getParameter("email");
-
-        Collection<User> theUsers = UserRepository.instance().getAllUsers();
-        Iterator<User> theUsersIter = theUsers.iterator();
-        boolean isU = false;
-        while( theUsersIter.hasNext()){
-                User tempU = theUsersIter.next();
-                String tempN = tempU.getUsername();
-                if(tempN.equals(username)){
-                        isU = true;
-        %>
-        <%
-                        out.println("Username is taken :(");
-	%>
-                        <jsp:include page="menu.jsp" />
-        <%
-                        break;
+<%
+        String name = request.getParameter("username");
+        String email = request.getParameter("email");
+        String pass = request.getParameter("pass");
+        if(pass.equals(request.getParameter("rePass"))){
+                Collection<User> myUsers = null;
+                myUsers = UserRepository.instance().getAllUsers();
+                if(!UserRepository.instance().check(email)){
+                        User myUser = UserRepository.instance().createNewUser(name, pass, email);
+                        session.setAttribute("loggedIn", myUser);
+                        response.sendRedirect("home.jsp");
+                }
+                else{
+                        response.sendRedirect("register.jsp?Error=2");
                 }
         }
-        if(password == null || repassword == null){
-                out.println("You must type in a password!");
-                %>
-                        <jsp:include page="menu.jsp" />
-                <%
-
+        else if(!pass.equals(request.getParameter("rePass"))){
+                response.sendRedirect("register.jsp?Error=1");
         }
-        else if(password.equals(repassword) && isU == false){
-                UserRepository.instance().createNewUser(username, password, email);
-                User newUser = new User(username, password, email);
-                session.setAttribute("LoginUser", newUser);
-        %>
-
-                <jsp:forward page="home.jsp" />
-	<%
-         }
-        else if(!password.equals(repassword)){
-        %>
-       		 <jsp:include page="menu.jsp" />
-        <%
-                  out.println("Passwords don't match!!");
-         }
-
-        %>
-
-
-        </BODY>
-</HTML>
+%>

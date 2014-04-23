@@ -1,5 +1,5 @@
 <%@ page import="facebook.*" %>
-<%@include file="menu.jsp" %>
+<%@include file="menu2.jsp" %>
 <%@page import="java.util.Hashtable" %>
 <%@page import="java.util.Collection" %>
 <%@page import="java.util.Iterator" %>
@@ -21,8 +21,9 @@
                 if(log == null){
                         response.sendRedirect("login.jsp");
                 }else{
-	%>
-                <h1>Welcome,  <%=log.getUsername()%> !</h1>
-		<h3>Hi There</h3>
-	</BODY>
+                %>
+                                <h1>Welcome,  <%=log.getUsername()%> !</h1>
+                <h3>Hi There</h3>
+        <% } %>
+        </BODY>
 </HTML>

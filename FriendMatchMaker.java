@@ -28,10 +28,10 @@ public class FriendMatchMaker
 	public void matchmaker()
 	{
 		try{
-		ArrayList<Hobby> userHobbies = userToMatch.getHobbies();
+		ArrayList<String> userHobbies = userToMatch.getHobbies();
 		for (int i = 0; i < users.size(); i++)
 		{
-			ArrayList<Hobby> otherHobbies = users.get(i).getHobbies();
+			ArrayList<String> otherHobbies = users.get(i).getHobbies();
 			for(int k = 0; k < otherHobbies.size(); k++)
 			{
 				for(int j = 0; j < userHobbies.size(); j++)

@@ -78,6 +78,11 @@ public class User {
 	{
 		return hobbies;
 	}
+	
+	public PhotoAlbum getPhotoAlbum()
+	{
+		return photos;
+	}
 
 	public ArrayList<FriendRequest> getFriendRequests()
 	{

@@ -46,7 +46,7 @@ public class UserRepository{
 	 * @author Dylan Cooper
 	 */
 	public User createNewUser(String username, String password, String email){
-		User u = new User(username, password, email);
+		User u = new User(username, email, password);
 		/*u.setUsername(username);
 		u.setPassword(password);
 		u.setEmail(email);

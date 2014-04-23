@@ -25,3 +25,4 @@
                 response.sendRedirect("register.jsp?Error=1");
         }
 %>
+</HTML>

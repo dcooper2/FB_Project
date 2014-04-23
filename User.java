@@ -16,10 +16,10 @@ public class User {
 	private ArrayList<Group> usersGroups;
 	private Inbox usersInbox;
 	//private ArrayList<Notification> notifications;
-	private ArrayList<Hobby> hobbies;
+	private ArrayList<String> hobbies;
 	private ArrayList<FriendRequest> fRequests;
 	private Wall usersWall;
-	private ArrayList<Settings> settings;
+	//private ArrayList<Settings> settings;
 	
 	public User(String u, String e, String pwd)
 	{
@@ -31,7 +31,7 @@ public class User {
 		usersGroups = new ArrayList<Group>();
 		usersInbox = new Inbox(this);
 	//	notifications = new ArrayList<Notification>();
-		hobbies = new ArrayList<Hobby>();
+		hobbies = new ArrayList<String>();
 		fRequests = new ArrayList<FriendRequest>();
 		usersWall = new Wall();
 		settings = new ArrayList<Settings>();
@@ -74,7 +74,7 @@ public class User {
 	}
 	*/
 
-	public ArrayList<Hobby> getHobbies()
+	public ArrayList<String> getHobbies()
 	{
 		return hobbies;
 	}
@@ -84,7 +84,7 @@ public class User {
 		return fRequests;
 	}
 
-	public void addHobby(Hobby h)
+	public void addHobby(String h)
 	{
 		hobbies.add(h);
 	}

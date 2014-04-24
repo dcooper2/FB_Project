@@ -76,8 +76,8 @@ public class UserRepository{
 
 	}
 
-	public User getUser(String username){
-		return users.get(username);
+	public User getUser(String email){
+		return users.get(email);
 	}
 	
 	public boolean check(String email){

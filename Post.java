@@ -103,7 +103,9 @@ public class Post{
 	 * @param tags ArrayList of Tag objects.
 	 * @author Dylan Cooper
 	 */
-	private void Post(User author, User recipient, Date date, String text, ArrayList<Comment> comments, ArrayList<Tag> tags){
-
-	}
+	public Post(User author, User recipient, String text){
+                ArrayList<Comment> comments = new ArrayList<Comment>();
+                ArrayList<User> tags = new ArrayList<User>();
+                date = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss").format(Calendar.getInstance().getTime());
+        }
 }

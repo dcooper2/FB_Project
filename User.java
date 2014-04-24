@@ -16,7 +16,7 @@ public class User {
 	private ArrayList<Group> usersGroups;
 	private Inbox usersInbox;
 	//private ArrayList<Notification> notifications;
-	private ArrayList<Hobby> hobbies;
+	private ArrayList<String> hobbies;
 	private ArrayList<FriendRequest> fRequests;
 	private Wall usersWall;
 	//private ArrayList<Settings> settings;
@@ -79,7 +79,7 @@ public class User {
 	}
 	*/
 
-	public ArrayList<Hobby> getHobbies()
+	public ArrayList<String> getHobbies()
 	{
 		return hobbies;
 	}

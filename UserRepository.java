@@ -49,8 +49,8 @@ public class UserRepository{
 		User u = new User(username, email, password);
 		/*u.setUsername(username);
 		u.setPassword(password);
-		u.setEmail(email);
-		users.put(username, u);*/
+		u.setEmail(email);*/
+		users.put(email, u);
 		return u;
 	}
 	/**

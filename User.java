@@ -16,7 +16,7 @@ public class User {
 	private ArrayList<Group> usersGroups;
 	private Inbox usersInbox;
 	//private ArrayList<Notification> notifications;
-	private ArrayList<String> hobbies;
+	private ArrayList<Hobby> hobbies;
 	private ArrayList<FriendRequest> fRequests;
 	private Wall usersWall;
 	//private ArrayList<Settings> settings;
@@ -31,12 +31,17 @@ public class User {
 		usersGroups = new ArrayList<Group>();
 		usersInbox = new Inbox(this);
 	//	notifications = new ArrayList<Notification>();
-		hobbies = new ArrayList<String>();
+		hobbies = new ArrayList<Hobby>();
 		fRequests = new ArrayList<FriendRequest>();
 		usersWall = new Wall();
-		settings = new ArrayList<Settings>();
+	//	settings = new ArrayList<Settings>();
 	}	
 	
+	public Wall getWall(){
+		return usersWall;
+	}	
+
+
 	public String getUsername()
 	{
 		return username; 
@@ -74,19 +79,9 @@ public class User {
 	}
 	*/
 
-	public ArrayList<String> getHobbies()
+	public ArrayList<Hobby> getHobbies()
 	{
 		return hobbies;
-	}
-	
-	public PhotoAlbum getPhotoAlbum()
-	{
-		return photos;
-	}
-	
-	public Wall getWall()
-	{
-		return usersWall;
 	}
 
 	public ArrayList<FriendRequest> getFriendRequests()
@@ -94,7 +89,7 @@ public class User {
 		return fRequests;
 	}
 
-	public void addHobby(String h)
+	public void addHobby(Hobby h)
 	{
 		hobbies.add(h);
 	}
@@ -108,7 +103,12 @@ public class User {
 	{
 		photos.addPhoto(p);
 	}
-
+	
+	public Photo getProfilePic(){
+		Photo pPic = photos.getProfilePicture();
+		return pPic;
+	}
+	
 /* No longer needed
 	public void addNotification(Notification n)
 	{

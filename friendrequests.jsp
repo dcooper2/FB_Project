@@ -9,11 +9,10 @@
 		<h1>Your Friend Requests!</h1>
 		<FORM action="friendRequestController.jsp" method="get">
 	<%
-			out.println("Hi\n");
 			User u = (User) session.getAttribute("LoginUser");
 			Boolean handlefr = true;
                 	ArrayList<FriendRequest> frList = u.getFriendRequests();
-			if(frList != null){
+			if(!frList.isEmpty()){
 				for(int i=0; i<frList.size(); i++){
 				  out.println(frList.get(i).getSender().getProfilePic()+ "  ");	
 				  out.println(frList.get(i).getSender().getUsername()+ "  ");
@@ -25,8 +24,7 @@
 				  out.println("<br/>");	
 				}
 			}
-			else{
-				out.println("Hi again\n");
+			else if (frList.isEmpty()){
 	%>
 				<h2>You have no new friend requests</h2>				
 	<%
@@ -34,8 +32,6 @@
 
                 
 	%>
-	
-		
 		
 		</FORM>
 

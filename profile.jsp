@@ -10,7 +10,7 @@
 <title>Profile</title>
 <head>
 <center>
-<div id="basicinfo" style=";border:1px solid;border-color:blue;margin-top:100px;width:800px;height:100px;border-radius:25px;">
+<div id="basicinfo" style=";border:1px solid;border-color:blue;margin-top:100px;width:80%;height:100px;border-radius:25px;">
 <%
         User loggedIn = (User) session.getAttribute("loggedIn");
         String name = loggedIn.getUsername();
@@ -19,7 +19,7 @@
         %></h2>
         Birthday:  | Hobbies:
 </div>
-<div id="leftSide" style="float:left;border:1px solid;border-color:blue;margin-top:2px;width:150px;height:500px;border-radius:25px;">
+<div id="leftSide" style="float:left;border:1px solid;border-color:blue;margin-top:2px;width:21%;height:500px;border-radius:25px;">
 <H3>Groups</H3>
 <%
         ArrayList<Group> groups = loggedIn.getGroups();
@@ -34,7 +34,7 @@
         }
 %>
 </div>
-<div id="center" style="text-align:center;float:left;margin-top:2px;width:610px;height:500px;border:1px solid;border-color:blue;border-radius:25px;">
+<div id="center" style="text-align:center;float:left;margin-top:2px;width:56%;height:500px;border:1px solid;border-color:blue;border-radius:25px;">
 <H3>Wall</H3>
 <FORM action="post.jsp" method="get">
         <INPUT type=text name=post size="50" style="height:100px;" /></br></br>
@@ -56,7 +56,7 @@
         }
 %>
 </div>
-<div id="leftSide" style="margin-top:2px;float:left;width:100px;border:1px solid;border-color:blue;width:150px;height:500px;border-radius:25px;">
+<div id="leftSide" style="margin-top:2px;float:left;width:21%;border:1px solid;border-color:blue;height:500px;border-radius:25px;">
 <H3>Friends</H3>
 <%
         ArrayList<User> friends = loggedIn.getFriends();
@@ -71,6 +71,9 @@
         }
 %>
 <hr>
-<H3>Follow Other Users</H3>
+<H3>Add Friends</H3>
+<Form action="addFriend.jsp" method=get>
+<%
+%><Input type=submit name=submit value="Add Friend" />
 </div></center>
 </HTML>

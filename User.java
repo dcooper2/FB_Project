@@ -84,7 +84,7 @@ public class User {
 		return photos;
 	}
 	
-	public PhotoAlbum getWall()
+	public Wall getWall()
 	{
 		return usersWall;
 	}

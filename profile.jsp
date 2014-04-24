@@ -39,7 +39,7 @@
 <FORM action="post.jsp" method="get">
         <INPUT type=text name=post size="50" style="height:100px;" /></br></br>
         <INPUt type=submit name=submit value="Post" />
- </FORM>
+</FORM>
 <hr>
 <%
         ArrayList<Post> posts = loggedIn.getWall().getPosts();
@@ -48,8 +48,10 @@
         }
         else{
                 for(int x = 0; x < posts.size(); x++){
-                        String postText = posts.get(x).getText();
-                        out.println(postText);
+                        String postText = posts.get(x).getText();%><b><%
+                        out.println(posts.get(x).getAuthor().getUsername() + ": ");%></b><%
+                        out.println(postText + " ");%><i><%
+                        out.println(posts.get(x).getDate());%></i></br><%
                 }
         }
 %>
@@ -72,4 +74,3 @@
 <H3>Follow Other Users</H3>
 </div></center>
 </HTML>
-       

@@ -83,6 +83,11 @@ public class User {
 	{
 		return photos;
 	}
+	
+	public PhotoAlbum getWall()
+	{
+		return usersWall;
+	}
 
 	public ArrayList<FriendRequest> getFriendRequests()
 	{

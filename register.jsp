@@ -11,10 +11,9 @@
         Enter Your E-mail Address:<INPUT type=text name=email /></br>
         Pick a password:<INPUT type="password" name=pass /></br>
         Re-enter password:<INPUT type="password" name=rePass /></br>
-        <!-- Privacy:
+        Privacy:
         <INPUT type="radio" name="privacy" value="public" />Public
         <INPUT type="radio" name="privacy" value="private" />Private</br></br>
-        -->
         <INPUT type=submit name=submit value="Register" />
 </FORM>
 <% String passMatch = request.getParameter("Error");
@@ -30,3 +29,4 @@
 </p>
 </center>
 </HTML>
+

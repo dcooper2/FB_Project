@@ -14,8 +14,8 @@
         <!-- Privacy:
         <INPUT type="radio" name="privacy" value="public" />Public
         <INPUT type="radio" name="privacy" value="private" />Private</br></br>
-        <INPUT type=submit name=submit value="Register" />
         -->
+        <INPUT type=submit name=submit value="Register" />
 </FORM>
 <% String passMatch = request.getParameter("Error");
         if(passMatch != null){

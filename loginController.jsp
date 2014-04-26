@@ -26,9 +26,7 @@
                         String tempP = currU.getPassword();
                         if((tempU.equals(email)) && (tempP.equals(password)))                        {
                                 session.setAttribute("LoginUser" , theUser);
-        %>
-                                <jsp:forward page="home.jsp" />
-        <%
+                                response.sendRedirect("home.jsp");
                                 isU = true;
                         }
 

@@ -13,4 +13,5 @@ Things we have to do to get a B:
 
 
 General notes:
--session User will be referred to as "LoginUser" when attemption to .getAttribute(), but the variable can be renamed as you like as long as its consistent throughout that jsp
+- session User will be referred to as "LoginUser" when attemption to .getAttribute(), but the variable can be renamed as you like as long as its consistent throughout that jsp
+- cannot add new wall posts on profile.jsp due to missing post.jsp

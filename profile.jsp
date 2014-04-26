@@ -12,7 +12,7 @@
 <center>
 <div id="basicinfo" style=";border:1px solid;border-color:blue;margin-top:100px;width:80%;height:100px;border-radius:25px;">
 <%
-        User loggedIn = (User) session.getAttribute("loggedIn");
+        User loggedIn = (User) session.getAttribute("LoginUser");
         String name = loggedIn.getUsername();
         %><H2><%
         out.println(name);

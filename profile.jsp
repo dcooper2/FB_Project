@@ -64,16 +64,18 @@
                 out.println("The user has no friends");
         }
         else {
+        %>
+        <FORM action= "friendsPage.jsp" method = "get">
+        <%
                 for(int x = 0; x < friends.size(); x++){
                         String friendName = friends.get(x).getUsername();
                         out.println(friendName);
                 }
+        %>
+        </select>
+        <input type=submit value="Go" />
+        <%
         }
 %>
-<hr>
-<H3>Add Friends</H3>
-<Form action="addFriend.jsp" method=get>
-<%
-%><Input type=submit name=submit value="Add Friend" />
 </div></center>
 </HTML>

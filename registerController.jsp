@@ -40,10 +40,7 @@
                 UserRepository.instance().createNewUser(username, password, email);
                 User newUser = new User(username, password, email);
                 session.setAttribute("LoginUser", newUser);
-        %>
-
-                <jsp:forward page="home.jsp" />
-         <%
+                response.sendRedirect("home.jsp");
          }
         else if(!password.equals(repassword)){
         %>

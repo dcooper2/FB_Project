@@ -24,7 +24,6 @@
 	%>
                 <h1>Welcome,  <%=log.getUsername()%> !</h1>
 		<h3>Hi There</h3>
-	<% } %>
 
 
 	<FORM action="addFriend.jsp" method="get">
@@ -63,7 +62,7 @@
                         <input type=submit name=submit value="Add Friend!" />
 		
 	<%
-		
+		}
 	%>
 		</FORM>
 

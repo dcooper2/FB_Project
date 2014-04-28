@@ -16,8 +16,8 @@ public class Post{
 	private User recipient;
 	private Date date;
 	private String text;
-	private ArrayList<Comment> comments;
-	private ArrayList<Tag> tags;
+//	private ArrayList<Comment> comments;
+//	private ArrayList<Tag> tags;
 
 	/**
 	 * Returns the User object who created the Post object on which the 
@@ -66,9 +66,9 @@ public class Post{
 	 * @return ArrayList of Tag objects
 	 * @author Dylan Cooper
 	 */
-	public ArrayList<Tag> getTag(){
-		return tags;
-	}
+//	public ArrayList<Tag> getTag(){
+//		return tags;
+//	}
 	/**
 	 * Adds a Tag object to the ArrayList from the {@link Post#getTag} 
 	 * method. Appends the Tag object being added to the Post object to the
@@ -76,9 +76,9 @@ public class Post{
 	 * @throws NullPointerException if the Tag object is null
 	 * @author Dylan Cooper 
 	 */
-	public void addTag(){
+//	public void addTag(){
 
-	}
+//	}
 	/**
 	 * Returns an ArrayList of Comment objects posted to the Post object.
 	 * If no Comment objects have been created to the Post object, then the
@@ -87,9 +87,9 @@ public class Post{
 	 * @return an ArrayList of Comment objects 
 	 * @author Dylan Cooper
 	 */
-	public ArrayList<Comment> getComments(){
-		return comments;
-	}
+//	public ArrayList<Comment> getComments(){
+//		return comments;
+//	}
 	/**
 	 * Instantiates the instance variables author, recipient, date, text,
 	 * comments, and tags.
@@ -103,9 +103,12 @@ public class Post{
 	 * @param tags ArrayList of Tag objects.
 	 * @author Dylan Cooper
 	 */
-	public Post(User author, User recipient, String text){
-                ArrayList<Comment> comments = new ArrayList<Comment>();
-                ArrayList<User> tags = new ArrayList<User>();
+	public Post(User a, User r, String t){
+		author = a;
+		recipient = r;
+		text = t;
+                //ArrayList<Comment> comments = new ArrayList<Comment>();
+                //ArrayList<User> tags = new ArrayList<User>();
                 date = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss").format(Calendar.getInstance().getTime());
         }
 }

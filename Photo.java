@@ -54,3 +54,4 @@ public class Photo {
 		//Some code goes here
 	}
 }
+

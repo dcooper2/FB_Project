@@ -47,9 +47,6 @@ public class UserRepository{
 	 */
 	public User createNewUser(String username, String password, String email){
 		User u = new User(username, email, password);
-		/*u.setUsername(username);
-		u.setPassword(password);
-		u.setEmail(email);*/
 		users.put(email, u);
 		return u;
 	}
@@ -61,6 +58,9 @@ public class UserRepository{
 	 */
 	public Collection<User> getAllUsers(){
 		return users.values();
+	}
+	public boolean check(String email){
+		return users.containsKey(email);
 	}
 	/**
 	 * Hydrates all registered users from the .user files to form a
@@ -79,8 +79,4 @@ public class UserRepository{
 	public User getUser(String email){
 		return users.get(email);
 	}
-	
-	public boolean check(String email){
-                return users.containsKey(email);
-        }
 }

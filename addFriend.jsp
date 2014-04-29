@@ -9,24 +9,17 @@
         <BODY>
 
                 <%
-                User theU = (User) session.getAttribute("LoginUser");
-                String email = theU.getEmail();
-                String personToFriend = request.getParameter("user");
-                Collection<User> theUsers = UserRepository.instance().getAllUsers();
-                Iterator<User> theUsersIter = theUsers.iterator();
-                while( theUsersIter.hasNext()){
-                        User tempU = theUsersIter.next();
-                        String tempN = tempU.getEmail();
-                        if(tempN.equals(personToFriend)){
-                                theU.sendFriendRequest(tempU);
-                        }
-		 }
+                User theU = (User) session.getAttribute("loggedIn");
+                String email = request.getParameter("friendLIst");
+		if(email == null){
+			response.sendRedirect("profile.jsp");
+		}
+		else{
+		User userToadd = UserRepository.instance().getUser(email);
+		theU.sendFriendRequest(userToadd);
+		response.sendRedirect("profile.jsp");
+                }%>
 
-
-                %>
-
-                <jsp:forward page="home.jsp" />
 
         </BODY>
 </HTML>
-

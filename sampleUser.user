@@ -1,3 +1,11 @@
+/* 
+*Contains all the info that is possible to have in one file. Because of how wall and photoAlbum 
+*are set up we'll need to make two subdirectories: username.wall and username.photos. Ideally 
+*they'll both be in the WEB-INF/lib directory. The reason we need a directory for the photos 
+*instead of just having the urls is because user might try to upload a photo with the same 
+*file name (which is something I know Stephen is looking to take points off for)
+*/
+
 username
 ~~
 email
@@ -17,6 +25,10 @@ hobby3
 etc
 ~~
 profilepic.jpg
+~~
+picture1.jpg
+picture2.jpg
+picture3.jpg
 ~~
 friendrequest1
 friendrequest2

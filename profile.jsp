@@ -12,70 +12,92 @@
 <center>
 <div id="basicinfo" style=";border:1px solid;border-color:blue;margin-top:100px;width:80%;height:100px;border-radius:25px;">
 <%
-        User loggedIn = (User) session.getAttribute("LoginUser");
-        String name = loggedIn.getUsername();
-        %><H2><%
-        out.println(name);
-        %></h2>
-        Birthday:  | Hobbies:
+	User loggedIn = (User) session.getAttribute("loggedIn");
+	String other = request.getParameter("user");
+	if(other != null){
+		User otherUser = UserRepository.instance().getUser(other);
+		loggedIn = otherUser;
+	}
+	String name = loggedIn.getUsername();%>
+	<H2><%
+	 out.println(("<img src="+ loggedIn.getProfilePic()+ " alt=profilePic width=25px height=25px />  "+ name));
+	%></h2>
+	<%out.println("Birthday: " + loggedIn.getBday());%> | Hobbies:  
+<%	User log = (User) session.getAttribute("loggedIn");
+	if(log.getEmail().equals(other)){
+	out.println("<a href=changeInfo.jsp?=user" + loggedIn.getEmail() + " >Change Info</a>");
+	}%>
 </div>
 <div id="leftSide" style="float:left;border:1px solid;border-color:blue;margin-top:2px;width:21%;height:500px;border-radius:25px;">
 <H3>Groups</H3>
 <%
-        ArrayList<Group> groups = loggedIn.getGroups();
-        if(groups.size() == 0){
-                out.println("The user is a member of no groups");
-        }
-        else{
-                for(int x = 0; x < groups.size(); x++){
-                        String groupName = groups.get(x).getName();
-                        out.println(groupName);
-                }
-        }
+	ArrayList<Group> groups = loggedIn.getGroups();
+	if(groups.size() == 0){
+		out.println("The user is a member of no groups");
+	}
+	else{
+		for(int x = 0; x < groups.size(); x++){
+			String groupName = groups.get(x).getName();
+			out.println(groupName);
+		}
+	}
 %>
 </div>
 <div id="center" style="text-align:center;float:left;margin-top:2px;width:56%;height:500px;border:1px solid;border-color:blue;border-radius:25px;">
 <H3>Wall</H3>
-<FORM action="post.jsp" method="get">
-        <textarea name=post cols=25 rows=6> </textarea></br></br>
-        <INPUt type=submit name=submit value="Post" />
+<FORM action="post.jsp"  method=get>
+	<INPUT type=text name=post size="50" style="height:100px;" /></br></br>
+	<%out.println("<INPUT type=hidden name=user value="+other + " />");%>
+	<INPUt type=submit name=SUBMIT value="Post" />
 </FORM>
 <hr>
 <%
-        ArrayList<Post> posts = loggedIn.getWall().getPosts();
-        if(posts.size() == 0){
-                out.println("The user has no activity on their wall. Make a post!");
-        }
-        else{
-                for(int x = 0; x < posts.size(); x++){
-                        String postText = posts.get(x).getText();%><b><%
-                        out.println(posts.get(x).getAuthor().getUsername() + ": ");%></b><%
-                        out.println(postText + " ");%><i><%
-                        out.println(posts.get(x).getDate());%></i></br><%
-                }
-        }
-%>
+	ArrayList<Post> posts = loggedIn.getWall().getPosts();
+	if(posts.size() == 0){
+		out.println("The user has no activity on their wall. Make a post!");
+	}
+	else{
+		for(int x = 0; x < posts.size(); x++){
+			String postText = posts.get(x).getText();%><b><%
+			out.println(posts.get(x).getAuthor().getUsername() + ": ");%></b><%
+			out.println(postText + " ");%><i><%
+			out.println(posts.get(x).getDate());%></i></br><%
+		}
+	}
+%> 
 </div>
 <div id="leftSide" style="margin-top:2px;float:left;width:21%;border:1px solid;border-color:blue;height:500px;border-radius:25px;">
 <H3>Friends</H3>
 <%
-        ArrayList<User> friends = loggedIn.getFriends();
-        if(friends.size() == 0){
-                out.println("The user has no friends");
-        }
-        else {
-        %>
-        <FORM action= "friendsPage.jsp" method = "get">
-        <%
-                for(int x = 0; x < friends.size(); x++){
-                        String friendName = friends.get(x).getUsername();
-                        out.println(friendName);
-                }
-        %>
-        </select>
-        <input type=submit value="Go" />
-        <%
-        }
-%>
-</div></center>
-</HTML>
+	ArrayList<User> friends = loggedIn.getFriends();
+	if(friends.size() == 0){
+		out.println("The user has no friends");
+	}
+	else {
+		for(int x = 0; x < friends.size(); x++){
+			String friendName = friends.get(x).getUsername();
+			out.println(("<img src="+friends.get(x).getProfilePic()+ " alt=profilePic width=15px height=15px /> <a href=profile.jsp?user=" + friends.get(x).getEmail() + ">"+friends.get(x).getUsername()) + "</a></br>");
+		}
+	}
+	User loggedInUser = (User)session.getAttribute("loggedIn");
+	
+	if(loggedInUser.getEmail().equals(other)){
+		%><hr>
+		<H3>Add Friends</H3>
+		<Form action="addFriend.jsp" method=get>
+		<select name=friendLIst>
+		<%
+			Collection<User> allUsers = UserRepository.instance().getAllUsers();
+			Iterator<User> iter = allUsers.iterator();
+			while(iter.hasNext()){
+				User current = iter.next();
+				if(!(current.equals(loggedIn)) && !(loggedIn.getFriends().contains(current)) && !(loggedIn.getFriendRequests().contains(current))){
+					out.println("<option value=" + current.getEmail() + ">" + current.getUsername() + "</option>");
+				}
+			}
+		%></select></br></br>
+		<Input type=submit name=submit value="Add Friend" />
+		</div>
+		</center><%
+	}%>
+	</HTML>

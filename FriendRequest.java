@@ -76,8 +76,8 @@ public class FriendRequest{
 	*/
 	public void send(User receiver)
 	{
-		ArrayList<FriendRequest> frs = receiver.getFriendRequests();
+		ArrayList<User> frs = receiver.getFriendRequests();
 		FriendRequest fr = new FriendRequest(sender, receiver);
-		frs.add(fr);
+		frs.add(receiver);
 	}
 }

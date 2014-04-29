@@ -14,7 +14,7 @@ public class Comment{
 	private User recipient;
 	private Date date;
 	private String text;
-	private ArrayList<User> tags;
+	private ArrayList<Tag> tags;
 
 	/**
 	 * Returns the <code>User</code> object who created the <code>Comment
@@ -65,7 +65,7 @@ public class Comment{
          * @return ArrayList of Tag objects
          * @author Dylan Cooper
 	*/
-	public ArrayList<User> getTag(){
+	public ArrayList<Tag> getTag(){
 		return tags; 
 	}
 	/**
@@ -90,7 +90,7 @@ public class Comment{
          * @param tags ArrayList of Tag objects.
          * @author Dylan Cooper
 	*/
-	private void Comment(User author, User recipient, Date date, String text, ArrayList<User> tags){
+	private void Comment(User author, User recipient, Date date, String text, ArrayList<Tag> tags){
 
 	}
 

@@ -5,9 +5,9 @@
         <BODY>
 
                 <h1>Login</h1>
-                <FORM action="loginController.jsp" method="get">
-                        Enter your email: <input type=text name=email /><br/>
-                        Enter your password: <input type=password name=password /><br/>
+                <FORM action="loginController.jsp" method="post">
+                        <label for="email">Enter your email:</label> <input type=text name=email required="required"/><br/>
+                        <label for="password">Enter your password:</label> <input type=password name=password required="required"/><br/>
 
                         <input type=submit name=submit value="Login" />
                 </FORM>

@@ -37,7 +37,7 @@
 <div id="center" style="text-align:center;float:left;margin-top:2px;width:56%;height:500px;border:1px solid;border-color:blue;border-radius:25px;">
 <H3>Wall</H3>
 <FORM action="post.jsp" method="get">
-        <INPUT type=text name=post size="50" style="height:100px;" /></br></br>
+        <textarea name=post cols=25 rows=6> </textarea></br></br>
         <INPUt type=submit name=submit value="Post" />
 </FORM>
 <hr>

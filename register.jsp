@@ -6,12 +6,12 @@
 
                 <h1>Register</h1>
                 <FORM action="registerController.jsp" method="post">
-                Enter Username: <input type=text name=username /><br/>
+                <label for="username">Enter Username:</label> <input type=text name=username required="required"/><br/>
 
-                Pick a password: <input type=password name=password /><br/>
+                <label for="password">Pick a password: </label><input type=password name=password required="required"/><br/>
 
-                Re-enter password: <input type=password name=repassword /><br/>
-                Enter your email address: <input type=text name=email /><br/>
+                <label for="repassword">Re-enter password: </label><input type=password name=repassword required="required"/><br/>
+                <label for="email">Enter your email address: </label><input type=text name=email required="required" /><br/>
 
 
                 <input type=submit name=submit value="Register" />

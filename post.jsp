@@ -1,19 +1,17 @@
-<%@ page import="facebook.*" %>
-<%@include file="menu2.jsp" %>
-<%@page import="java.util.Hashtable" %>
-<%@page import="java.util.Collection" %>
-<%@page import="java.util.Iterator" %>
-<%@page import="java.util.ArrayList" %>
-<%@page import="java.util.Date" %>
+<%@ page import="facebook.*"  %>
+<%@ page import="java.util.Hashtable" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.ArrayList" %>
+
 <HTML>
-<body>
 <%
-User loggedIn = (User) session.getAttribute("LoginUser");
-String text = request.getParameter("post");
-Post np = new Post(loggedIn, loggedIn, text);
-loggedIn.getWall().getPosts().add(np);
-//out.println("Post text is: " + text);
-response.sendRedirect("profile.jsp");
+	User loggedIn = (User) session.getAttribute("loggedIn");
+	String text = request.getParameter("post");
+	String email = request.getParameter("user");
+	User postOn = UserRepository.instance().getUser(email);
+	Post post = new Post(loggedIn, postOn, text);
+	postOn.getWall().getPosts().add(post);
+	response.sendRedirect("profile.jsp?user="+email);
 %>
-</body>
-</html>
+</HTML>	

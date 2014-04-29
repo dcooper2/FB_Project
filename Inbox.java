@@ -1,6 +1,6 @@
 package facebook;
 import java.util.ArrayList;
-
+import java.util.Hashtable;
 
 /**The Inbox class is functional for creating an inbox that holds messages. 
 * This class is useful for creating an inbox for a specific user.
@@ -11,13 +11,12 @@ import java.util.ArrayList;
 public class Inbox {
 
 
-	private ArrayList<InboxMessage> messages; 
+	private ArrayList<Conversation> messages; 
 	private User user;	
-
 	/**Sets the user who the inbox belongs to.*/
 	public Inbox(User user){
 		this.user = user;
-		messages =  new ArrayList<InboxMessage>();
+		messages =  new ArrayList<Conversation>();
 	}
 	/**The receiveMessage method takes in a User and an InboxMessage as a parameter, the User as the person who will be receiving the message and an InboxMessage as the message that the user will be receiving in their Inbox. This will add the InboxMessage given as a parameter and add it to the User's messages ArrayList. This will simulate the user receiving the mssage. The purpose of this message is to receive the message that another 
 * User has sent.
@@ -25,7 +24,6 @@ public class Inbox {
 @param InboxMessage takes in an InboxMessage object called message.
 */
 	public void receiveMessage(User receiver, InboxMessage message){
-		//receiver.getMessages().add(message);
 	}
 	/**The sendMessage method  will actually send a message, based upon the InboxMessage parameter
 * from the User which is called author to another User (receiver). This method will return
@@ -44,7 +42,7 @@ public class Inbox {
 * This method will return all of the User's messages that have been added to their messages
 * ArrayList. 
 */
-	public ArrayList<InboxMessage> getMessages(){
+	public ArrayList<Conversation> getConversations(){
 		return messages;
 	}
 	/**The deleteMessage method takes one parameter, of type InboxMessage, which is the 
@@ -53,11 +51,11 @@ public class Inbox {
 * ArrayList of messages and when found the message will be removed.
 @param InboxMessage takes in an InboxMessage object called message.
 */
-	public void deleteMessage(InboxMessage message){
+	public void deleteConversation(Conversation message){
 		for(int x = 0; x < messages.size(); x++){
-			/*if(messages[x] == message){
+			if(messages.get(x) == message){
 				messages.remove(x);
-			}*/
+			}
 		}
 	}
 	/**The save method will simply save all of the current information in the current 

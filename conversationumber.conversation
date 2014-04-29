@@ -1,0 +1,25 @@
+/*
+*Example of whats going to be in a  username.inbox directory
+* file path to this will be ~/flacebook/WEB-INF/lib
+*inside of /lib/ there will be multiple username.inbox directories. Inside of each .inbox directory
+*will be multiple conversationnumber.conversation files. Each will contain the following  
+*/
+
+memberName1
+~~
+memberName2
+~~
+subject
+~~
+authorName
+recipientName
+date
+text
+~~
+authorName
+recipientName
+date
+text
+~~
+etc
+~~

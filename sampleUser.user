@@ -1,6 +1,6 @@
 /* 
 *Contains all the info that is possible to have in one file. Because of how wall and photoAlbum 
-*are set up we'll need to make 3 subdirectories: username.wall, username.photos, and username.inbox.
+*are set up we'll need to make q subdirectories: username.photos, and username.inbox.
 *Ideally the .user file and subdirectories will all be in the WEB-INF/lib directory. The reason we 
 *need a directory for the photos instead of just having the urls is because users might try to upload 
 *a photo with the same file name as another user (which is something I know Stephen is looking to 
@@ -36,4 +36,15 @@ friendrequest2
 friendrequest3
 etc
 ~~
-
+postAuthor
+postRecipient
+date
+text
+~~
+postAuthor
+postRecipient
+date
+text
+~~
+etc
+~~

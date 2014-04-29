@@ -64,7 +64,5 @@ public class InboxMessage
 	*/
 	public void send()
 	{
-		ArrayList<InboxMessage> destination = recipient.getInbox().getMessages();
-		destination.add(this);
 	}
 }

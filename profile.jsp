@@ -29,20 +29,41 @@
         }%>
 </div>
 <div id="leftSide" style="float:left;border:1px solid;border-color:blue;margin-top:2px;width:21%;height:500px;border-radius:25px;">
-<H3>Groups</H3>
+<H3>Pictures</H3>
+
+        <FORM action="picController.jsp" method="post" enctype="multipart/form-data" >
+
+
+        <input type=file name=pic /><br/>
+        <input type=submit value="Upload Pic" /><br/>
 <%
-        ArrayList<Group> groups = loggedIn.getGroups();
-        if(groups.size() == 0){
-                out.println("The user is a member of no groups");
+
+
+
+        PhotoAlbum pa = loggedIn.getPhotoAlbum();
+        ArrayList<String> pics = pa.getPhotos();
+        if(pics.isEmpty()){
+                out.println("You have no photos");
         }
         else{
-                for(int x = 0; x < groups.size(); x++){
-                        String groupName = groups.get(x).getName();
-                        out.println(groupName);
-                }
+                int y =0;
+                for(int x = pics.size() - 1; x >= 0; x--){
+
+                        if((pics.get(x) != null)){
+                         out.println("<img src=\"http://rosemary.umw.edu/~dcooper2/fbPics/" + pics.get(x)+ "\" width=100 />");
+                        }
+                        y++;
+                        if(y == 5){
+                                break;
+                        }
+               }
+
         }
+
 %>
-</div>
+
+        </FORM>
+
 </div>
 <div id="center" style="text-align:center;float:left;margin-top:2px;width:56%;height:500px;border:1px solid;border-color:blue;border-radius:25px;">
 <H3>Wall</H3>

@@ -7,6 +7,9 @@
 <%@page import="java.util.Date" %>
 
 <HTML>
+<head>
+	<title>Facebook - Home</title>
+</head>
         <BODY>
         <style>
         h1{
@@ -17,54 +20,23 @@
         }
         </style>
         <%
-                User log = (User) session.getAttribute("LoginUser");
+                User log = (User) session.getAttribute("loggedIn");
                 if(log == null){
                         response.sendRedirect("login.jsp");
                 }else{
-	%>
-                <h1>Welcome,  <%=log.getUsername()%> !</h1>
-		<h3>Hi There</h3>
-
-
-	<FORM action="addFriend.jsp" method="get">
-		<h3>Send A Friend Request:</h3>
-		<select name="user">
-	<%
-		User user1 = (User)session.getAttribute("LoginUser");
-
-                 Collection<User> theUsers =
-                                UserRepository.instance().getAllUsers();
-                 Iterator<User> theUsersIter =
-                                        theUsers.iterator();
-                ArrayList<User> gUnit = user1.getFriends();
-                       while( theUsersIter.hasNext()){
-                                        User tempU = theUsersIter.next();
-                                        String tempN = tempU.getEmail();
-                                        boolean isInThere = false;
-                        for(int k = 0; k< gUnit.size(); k++){
-                                if(tempN.equals(gUnit.get(k).getEmail())){
-                                        isInThere = true;
-                                        break;
-                                }
-			}
-                                if(!tempN.equals(user1.getEmail()) && isInThere==false){
-                        %>
-                        <option name="user" value="<%=tempN%>" > <%= tempN %>  </option>
-
-                        <%
-
-                                        }
-                         }
-
-                        %>
-                        </select>
-
-                        <input type=submit name=submit value="Add Friend!" />
-		
-	<%
-		}
-	%>
-		</FORM>
-
-	</BODY>
+                %>
+                     <center><h1>Welcome,  <%=log.getUsername()%> !</h1>
+<%
+		/*ArrayList<Post> newsFeed = log.getNewsFeed();
+		for(int x = 0; x < newsFeed.size(); x++){
+			out.println(newsFeed.get(x).getAuthor() + ": " + newsFeed.get(x).getText() + " " +  newsFeed.get(x).getDate());
+		}*/					
+        } %>
+<div id="userInfo" style="border-left:1px solid;border-color:blue;float:right;margin-top:25px;width:25%;height:100%">
+<h4><%
+	out.println("<img src=" + log.getProfilePic() + " alt=profilePic width=35px height:35px /> " + log.getUsername());
+%></h4>
+<hr>
+</div>	
+       </center></BODY>
 </HTML>

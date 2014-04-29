@@ -2,8 +2,8 @@
 *Contains all the info that is possible to have in one file. Because of how wall and photoAlbum 
 *are set up we'll need to make 3 subdirectories: username.wall, username.photos, and username.inbox.
 *Ideally they'll both be in the WEB-INF/lib directory. The reason we need a directory for the photos 
-*instead of just having the urls is because user might try to upload a photo with the same 
-*file name (which is something I know Stephen is looking to take points off for)
+*instead of just having the urls is because users might try to upload a photo with the same 
+*file name as another user (which is something I know Stephen is looking to take points off for)
 */
 
 username

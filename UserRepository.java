@@ -1,6 +1,7 @@
 package facebook;
 import java.util.Hashtable;
 import java.util.Collection;
+import java.util.File;
 
 /**
  * This singleton class obtains existing User objects to add into a Hashtable. 
@@ -23,6 +24,7 @@ public class UserRepository{
 	public static UserRepository instance(){
 		if (theInstance == null){
 			theInstance = new UserRepository();
+			theInstance.bootstrap();
 		}
 		return theInstance;	
 	}

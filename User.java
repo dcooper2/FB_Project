@@ -114,10 +114,7 @@ public class User {
 	{
 		return fRequests;
 	}
-
-	public void setBday(int month, int day, int year){
-		bday.set(year, month - 1, day, 0, 0);
-	}
+	
 	public void addHobby(String h)
 	{
 		hobbies.add(h);

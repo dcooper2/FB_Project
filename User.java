@@ -3,6 +3,7 @@ package facebook;
 import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
+import java.io.File;
 /**
 A class representing an account and all that can be done with it while on the facebook webpage. Is created in the {@link UserRepository}.
 @author Dominic
@@ -30,7 +31,8 @@ public class User {
 		username = u;
 		email = e;
 		password = pwd;
-		profilePic = "http://24.media.tumblr.com/f1096b54d940b11b8a1a51438c0380b3/tumblr_mlepboX7qJ1qfdu3lo1_500.jpg";
+		this.bday = "N/A";
+		profilePic = "profile.png";
 		friends = new ArrayList<User>();
 		photos = new PhotoAlbum(this);
 		usersGroups = new ArrayList<Group>();
@@ -41,14 +43,17 @@ public class User {
 		usersWall = new Wall();
 		settings = new ArrayList<Settings>();
 		newsFeed = new ArrayList<Post>();
+		save();
 	}	
 
 	public String getUsername()
 	{
+		save();
 		return username; 
 	}	
 
 	public String getProfilePic(){
+		save();
 		return profilePic;
 	}
 	public String getPassword()
@@ -56,6 +61,7 @@ public class User {
 		return password;
         }
 	public String getBirthday(){
+		save();
 		return bday;
 	}
 	public String getEmail()
@@ -70,11 +76,13 @@ public class User {
 	
 	public ArrayList<User> getFriends()
         {
+		save();
 		return friends;
         }
 
 	public Inbox getInbox()
 	{
+		save();
 		return usersInbox;
 	}
 	public ArrayList<Post> getNewsFeed(){
@@ -102,22 +110,27 @@ public class User {
 
 	public PhotoAlbum getPhotoAlbum()
 	{
+		save();
 		return photos;
+		
 	}
 
 	public Wall getWall()
 	{
+		save();
 		return usersWall;
 	}
 
 	public ArrayList<User> getFriendRequests()
 	{
+		save();
 		return fRequests;
 	}
-	
+
 	public void addHobby(String h)
 	{
 		hobbies.add(h);
+	save();	
 	}
 
 	public void addGroup(Group g)
@@ -125,14 +138,16 @@ public class User {
 		usersGroups.add(g);
 	}
 
-	public void addPhoto(Photo p)
+	public void addPhoto(String p)
 	{
 		photos.addPhoto(p);
+		save();
 	}
 	
 	public void sendMessage(int numberConv, InboxMessage message){
 		Conversation addToConvo = usersInbox.getConversations().get(numberConv);
 		addToConvo.getMessages().add(message);
+		save();
 	}
 	public void startNewConvo(User user, User userTwo, String text, String subject){
 		Conversation convo = new Conversation(user, userTwo, subject);
@@ -140,6 +155,7 @@ public class User {
 		convo.getMessages().add(mess);
 		userTwo.getInbox().getConversations().add(convo);
 		usersInbox.getConversations().add(convo);
+		save();
 	}	
 /* No longer needed
 	public void addNotification(Notification n)
@@ -151,11 +167,13 @@ public class User {
 	public void deleteHobby(String h)
 	{
 		hobbies.remove(h);
+		save();
 	}
 
-        public void deletePhoto(Photo p)
+        public void deletePhoto(String p)
         {
                 photos.removePhoto(p);
+		save();
         }
 
 	public void deleteGroup(Group g)
@@ -170,6 +188,7 @@ public class User {
 	public void sendFriendRequest(User u)
 	{
 		u.fRequests.add(this);
+		save();
 	}
 
 /**
@@ -183,6 +202,7 @@ A receiver of a friend request agrees to be 'friends' with the {@link FriendRequ
 		//fr.accept(); does nothing
 		//u.notify()
 		fRequests.remove(fr);
+		save();
 	}
 
 /**
@@ -194,6 +214,7 @@ friend request will be removed from the list of pending friend requests
 	{
 		//fr.reject(); 
 		fRequests.remove(fr);
+		save();
 	}
 
 /**
@@ -207,14 +228,18 @@ Creates a new {@link Group} with this {@link User} being listed as the creator. 
 	}
 	public void setProfilePic(String profilePic){
 		this.profilePic = profilePic;
+		save();
 	}
+	public void setBday(String month, String day, String year){
+		bday = (month + '/' + day + '/' + year);
+		save();
+	}	
 
-
-	private void save()
+	public void save()
         {
-                try
-                {
-                        File file = new File(email + ".user");
+	String extension = "/home/dperotti/public_html/FB_Stuff/";
+                try{
+                        File file = new File(extension + email + ".user");
                         FileWriter fw = new FileWriter(file);
                         PrintWriter pw = new PrintWriter(fw);
 
@@ -230,7 +255,7 @@ Creates a new {@link Group} with this {@link User} being listed as the creator. 
                         pw.println(bday);
                         pw.println("~~");
 
-                        //Save friends in friends list
+			 //Save friends in friends list
                         for(int i = 0; i < friends.size(); i++)
                         {
                                 pw.println(friends.get(i).getEmail());
@@ -245,20 +270,42 @@ Creates a new {@link Group} with this {@link User} being listed as the creator. 
                         pw.println("~~");
 
                         //Save profilePicture
-                        pw.println(profilePicture);
+                        pw.println(profilePic);
                         pw.println("~~");
-                                              pw.close();
-        		}catch (Exception e)
+
+                        //Save friend Requests in fRequests
+                        for(int i = 0; i < fRequests.size(); i++)
                         {
+                                pw.println(fRequests.get(i).getEmail());
+			         //Output date as string don't need
+                            //    pw.println(fRequests.get(i).getDate());
+                        }
+                        pw.println("~~");
+
+                        //Save posts in wall
+                        for(int i = 0; i < usersWall.getPosts().size(); i++)
+                        {
+                                pw.println(usersWall.getPosts().get(i).getAuthor().getEmail());
+                                pw.println(usersWall.getPosts().get(i).getRecipient().getEmail());
+                                //Output date as string
+                                pw.println(usersWall.getPosts().get(i).toString());
+                                pw.println(usersWall.getPosts().get(i).getText());
+                        }
+                        pw.println("~~");
+
+
+                        pw.close();
+                        }catch (Exception e)
+                                                   {
                                 System.out.println("HEY!!! Couldn't save " + username+ "!");
                                 e.printStackTrace();
 
                         }
         }
 
-
-	public void load(String filename) throws Exception
-	{
-		//Need to know how we're saving before I can load
-	}	
+        public void load(String filename) throws Exception
+        {
+                //Need to know how we're saving before I can load
+        }
 }
+

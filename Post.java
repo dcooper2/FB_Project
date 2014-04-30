@@ -20,6 +20,13 @@ public class Post{
 	private ArrayList<Comment> comments;
 	private ArrayList<Tag> tags;
 
+
+ public String toString(){
+                String s = new String();
+                s = String.valueOf(date.getTime());
+                return s;
+        }
+
 	/**
 	 * Returns the User object who created the Post object on which the 
 	 * method is called upon. The User object must be a valid, registered

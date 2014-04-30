@@ -13,6 +13,13 @@ public class FriendRequest{
 	private boolean hasBeenRejected; 
 	private Date date;	
 
+
+	public String toString(){
+                String s = new String();
+                s = String.valueOf(date.getTime());
+                return s;
+        }
+
 	public FriendRequest(User s, User r)
 	{
 		sender = s;

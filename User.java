@@ -211,76 +211,54 @@ Creates a new {@link Group} with this {@link User} being listed as the creator. 
 	public void setProfilePic(String profilePic){
 		this.profilePic = profilePic;
 	}
+
+
 	private void save()
-	{
-		try
-		{
-			File file = new File(username + ".user");
-			FileWriter fw = new FileWriter(file);
-			PrintWriter pw = new PrintWriter(fw);
+        {
+                try
+                {
+                        File file = new File(email + ".user");
+                        FileWriter fw = new FileWriter(file);
+                        PrintWriter pw = new PrintWriter(fw);
 
-			pw.println(password);
-			pw.println("--");
+                        pw.println(username);
+                        pw.println("~~");
 
-			pw.println(email);
-                        pw.println("--");
+                        pw.println(email);
+                        pw.println("~~");
 
-			for(int i = 0; i < friends.size(); i++)
-			{
-				pw.println(friends.get(i).getUsername());
-			}
-			pw.println("--");
+                        pw.println(password);
+                        pw.println("~~");
 
-			for (int i = 0; i < hobbies.size(); i++)
-			{
-				pw.println(hobbies.get(i));
-			}
-			pw.println("--");
+                        pw.println(bday);
+                        pw.println("~~");
 
-			//HEADS UP!!! For everything after this point we need to save mulitple things
-			for(int i = 0; i < photos.getPhotos().size(); i++)
+                        //Save friends in friends list
+                        for(int i = 0; i < friends.size(); i++)
                         {
-                                pw.println(photos.getPhotos().get(i).getFileName());
+                                pw.println(friends.get(i).getEmail());
                         }
-			pw.println("--");
+                        pw.println("~~");
 
-			for(int i = 0; i < usersGroups.size(); i++)
+                        //Save hobbies in hobby list
+                        for (int i = 0; i < hobbies.size(); i++)
                         {
-                                pw.println(usersGroups.get(i).getName());
+                                pw.println(hobbies.get(i));
                         }
-                        pw.println("--");
+                        pw.println("~~");
 
-			Inbox m = new Inbox(this);
-			for(int i = 0; i < m.getConversations().size(); i++)
+                        //Save profilePicture
+                        pw.println(profilePicture);
+                        pw.println("~~");
+                                              pw.close();
+        		}catch (Exception e)
                         {
-                               // pw.println(;
-                        }
-                        pw.println("--");
-
-			//How do we save settings???
-
-
-			for(int i = 0; i < fRequests.size(); i++)
-			{
-				//pw.println(;
-			} 
-			pw.println("--");
-
-			Wall w = new Wall();	
-			for(int i = 0; i < w.getPosts().size(); i++)
-			{
-				//pw.println(;
-			}
-			pw.println("--");
-
-			pw.close();
-		}catch (Exception e)
-			{
-				System.out.println("HEY!!! Couldn't save " + username + "!");
+                                System.out.println("HEY!!! Couldn't save " + username+ "!");
                                 e.printStackTrace();
 
-			}
-	}
+                        }
+        }
+
 
 	public void load(String filename) throws Exception
 	{

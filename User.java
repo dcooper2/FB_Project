@@ -11,7 +11,7 @@ public class User {
 
 	private String username;
 	private String email;
-	private Calendar bday;
+	private String bday;
 	private String password;
 	private ArrayList<User> friends;
 	private PhotoAlbum photos;
@@ -55,7 +55,7 @@ public class User {
         {
 		return password;
         }
-	public Calendar getBday(){
+	public String getBirthday(){
 		return bday;
 	}
 	public String getEmail()
